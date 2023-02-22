@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=VT323&display=swap");
+// font-family: 'Oswald', sans-serif;
+// font-family: 'VT323', monospace; // 컴퓨터스러운
+
+// RESET
+@import "reset";
+
+// MAIN
+body {
+  font: 16px/1 "Oswald";
+}
+
+figure {
+  // body 태그 안에서 바로 나오기에 제자리에 위치하라고
+  position: relative;
+  width: 100%;
+  height: 100vh; // 컨텐츠 내용 없을 때 크기가 안 잡히므로 이렇게 해서 화면 꽉 차게
+  overflow: hidden;
+  background: linear-gradient(25deg, rgb(0, 159, 154), rgb(216, 255, 255));
+
+  h1 {
+    position: absolute;
+    top: 7vh;
+    left: 4vw;
+
+    // line-height 도 0 이 됨.
+    // 0포인트로 줄바꿈하게. strong 과 span 태그가 바짝 붙음.
+    font-size: 0;
+
+    strong {
+      // font: bold 40px/1.4;
+      font-size: 40px;
+      line-height: 1.1; // strong 과 span 태그 간 살짝 띄우기
+
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    span {
+      // font: 16px/1; 과 같은 의미
+      font-size: 16px;
+      line-height: 16px;
+
+      font-weight: normal;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+  }
+
+  .menu {
+    position: absolute;
+    top: 8vh;
+    right: 4vw;
+    font-size: 30px;
+    color: rgb(0, 159, 154);
+  }
+
+  // PANEL
+  @import "panel";
+
+  // BTNS
+  @import "btns";
+
+  > p {
+    position: absolute;
+    bottom: 7vh;
+    left: 50%; // 부모의 50%
+    transform: translateX(-50%); // 자신의 50%
+    font-size: 16px/1;
+    color: #fff;
+  }
+}

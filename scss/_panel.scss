@@ -1,0 +1,30 @@
+section {
+  position: absolute;
+  width: 20vw;
+  height: 65vh;
+  left: 50%;
+  top: 150%; // 패널 위치 내리기
+  margin-left: -10vw;
+  margin-top: -32.5vh;
+
+  // 수평 중앙정렬
+  margin-left: -10vw;
+
+  article {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+    .inner {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      padding: 5vh 2.5vw 8vh; // 상, 좌우, 하
+      border-radius: 10px;
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+      opacity: 0.6;
+    }
+  }
+}

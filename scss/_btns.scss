@@ -1,0 +1,147 @@
+.btnPrev,
+.btnNext {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+
+  // 수직 중앙정렬
+  top: 50%;
+
+  // 수평 중앙정렬 후 왼쪽으로 보내기
+  left: 50%;
+  transform: translate(-20vw, -80%);
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0;
+  padding-left: 20px;
+
+  &::before,
+  &::after {
+    content: ""; // 꼭 있어야 되는 요소!!
+    display: block;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    background-color: #fff;
+    left: 0; // div 요소 왼쪽에 딱 붙이기
+
+    // 돌아갈 때 기준점(transform-origin)을 가운데가 아닌 왼쪽 끝으로 보내기
+    transform-origin: left center;
+
+    transform: rotate(-180deg);
+    transition: 0.5s;
+  }
+
+  &::after {
+    transform: rotate(180deg);
+  }
+
+  span {
+    font-size: 18px;
+    color: #fff;
+    transition: 0.5s;
+  }
+
+  &:hover {
+    span {
+      // 자기 크기(60px)만큼 옮김
+      transform: translateX(100%);
+      opacity: 0;
+    }
+
+    &::before {
+      transform: rotate((-30deg));
+    }
+
+    &::after {
+      transform: rotate((30deg));
+    }
+  }
+}
+
+// .btnPrev 에서 다른 부분만 여기서 설정
+.btnNext {
+  // 글자부분이 자기 크기만큼 더 간 것을 빼준다
+  transform: translate(calc(20vw - 60px), -80%);
+  padding-left: 0;
+  padding-right: 20px;
+  justify-content: flex-end;
+
+  &::before,
+  &::after {
+    transform-origin: right center;
+  }
+
+  &:hover {
+    span {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+// 내 코드
+// .btnNext {
+//   position: absolute;
+//   width: 60px;
+//   height: 60px;
+
+//   // 수직 중앙정렬
+//   top: 50%;
+
+//   // 수평 중앙정렬 후 으로 보내기
+//   right: 50%;
+//   transform: translate(20vw, 50%);
+
+//   display: flex;
+//   justify-content: flex-end;
+//   align-items: center;
+//   cursor: pointer;
+//   font-size: 0;
+//   padding-right: 20px;
+
+//   &::before,
+//   &::after {
+//     content: ""; // 꼭 있어야 되는 요소!!
+//     display: block;
+//     width: 100%;
+//     height: 2px;
+//     position: absolute;
+//     background-color: #fff;
+//     right: 0; // div 요소 왼쪽에 딱 붙이기
+
+//     // 돌아갈 때 기준점(transform-origin)을 가운데가 아닌 왼쪽 끝으로 보내기
+//     transform-origin: right center;
+
+//     transform: rotate(-180deg);
+//     transition: 0.5s;
+//   }
+
+//   &::after {
+//     transform: rotate(180deg);
+//   }
+
+//   span {
+//     font-size: 18px;
+//     color: #fff;
+//     transition: 0.5s;
+//   }
+
+//   &:hover {
+//     span {
+//       // 자기 크기(60px)만큼 옮김
+//       transform: translateX(100%);
+//       opacity: 0;
+//     }
+
+//     &::before {
+//       transform: rotate((-30deg));
+//     }
+
+//     &::after {
+//       transform: rotate((30deg));
+//     }
+//   }
+// }

@@ -6,6 +6,7 @@ section {
   top: 150%; // 패널 위치 내리기
   margin-left: -10vw;
   margin-top: -32.5vh;
+  transition: 1s;
 
   // 수평 중앙정렬
   margin-left: -10vw;
@@ -17,6 +18,15 @@ section {
     left: 0;
     top: 0;
 
+    // 가운데 패널만 크기가 커지는 기능
+    // article 태그이면서 on 클래스명을 가진
+    &.on {
+      .inner {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
     .inner {
       width: 100%;
       height: 100%;
@@ -25,6 +35,130 @@ section {
       border-radius: 10px;
       box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
       opacity: 0.6;
+
+      // 가운데 패널이 아닌 거 다 작게 만들기
+      transform: scale(0.8);
+
+      // Prev, Next 버튼 누를 때 커지는 기능 천천히
+      transition: 1s;
+
+      .pic {
+        position: relative;
+        width: 15vw;
+        height: 15vw;
+        background-size: 0;
+
+        &::before,
+        &::after {
+          content: "";
+          display: block;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          border-radius: 50%;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+          background-image: inherit;
+        }
+
+        // 그림자 효과 - 이미지 색 반영
+        &::before {
+          transform: translateY(10%);
+          filter: blur(20px) brightness(130%);
+        }
+
+        &.on {
+          // 그림자 돌리기
+          &::before {
+            animation: rotation2 4s linear infinite;
+          }
+
+          // 그림 돌리기
+          &::after {
+            animation: rotation1 4s linear infinite;
+          }
+        }
+
+        // CD 모양 가운데 구멍
+        .dot {
+          position: absolute;
+          width: 2.5vw;
+          height: 2.5vw;
+          border-radius: 50%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: #fff;
+          box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.3); // inset; 그림자 안쪽으로
+          z-index: 3;
+        }
+      }
+
+      .text {
+        position: absolute;
+        width: 15vw;
+        text-align: center;
+        margin-top: 60px;
+        letter-spacing: 1px;
+
+        h2 {
+          margin-bottom: 20px;
+        }
+
+        p {
+          color: #777;
+        }
+
+        .control {
+          display: flex;
+          justify-content: space-around;
+          margin-top: 30px;
+
+          li {
+            cursor: pointer;
+            opacity: 0.6;
+            transition: 0.5s;
+
+            &.play {
+              // 크기 키우고 진하게
+              transform: scale(1.5);
+              opacity: 0.8;
+            }
+
+            &:hover {
+              transform: scale(1.5);
+              opacity: 1;
+
+              // 재생버튼은 원래 크기 때문에 더 크게 만들기
+              &.play {
+                transform: scale(2);
+              }
+            }
+          }
+        }
+      }
     }
+  }
+}
+
+// 키프레임 정의
+@keyframes rotation1 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotation2 {
+  0% {
+    transform: translateY(10%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(10%) rotate(360deg);
   }
 }
